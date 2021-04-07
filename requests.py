@@ -1,30 +1,10 @@
 import cherrypy
-
-users = {
-    '1': {
-        'id': '1',
-        'username': 'van',
-        'email ': 'van@ya.ru',
-        'department ': 'QA',
-        'date_joined': '2021.04.01 23:45',
-    },
-    '2': {
-        'name': 'billy',
-        'age': '33'
-    },
-    '3': {
-        'name': 'max',
-        'age': '99'
-    },
-    '4': {
-        'name': 'max',
-        'age': '99'
-    }
-}
+from Data import *
 
 
 class Requests:
     def GET(self, username=None, department=None):
+        users = all_users()
         data1 = []
         data2 = []
         if username == None:
@@ -45,15 +25,32 @@ class Requests:
         for item in data1:
             if item in data2:
                 data3.append(item)
-        return ('data: %s' % data3)
+        return 'data: %s' % data3
 
-    def POST(self, a, b):
-        return
+
+class Department:
+    def GET(self):
+        users = all_users()
+        data1 = []
+        for department in users:
+            user = users[department]
+            user = user['department']
+            data1.append(user)
+        data1 = list(set(data1))
+        return 'departments: %s' % data1
     exposed = True
+
+
 
 if __name__ == '__main__':
     cherrypy.tree.mount(
         Requests(), '/users', {
+            '/':
+                {'request.dispatch': cherrypy.dispatch.MethodDispatcher()}
+        }
+    )
+    cherrypy.tree.mount(
+        Department(), '/department', {
             '/':
                 {'request.dispatch': cherrypy.dispatch.MethodDispatcher()}
         }
