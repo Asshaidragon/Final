@@ -2,7 +2,7 @@ import cherrypy
 from Data import *
 
 
-class Requests:
+class Requests_users:
     def GET(self, username=None, department=None):
         users = all_users()
         data1 = []
@@ -26,9 +26,10 @@ class Requests:
             if item in data2:
                 data3.append(item)
         return 'data: %s' % data3
+    exposed = True
 
 
-class Department:
+class Requests_department:
     def GET(self):
         users = all_users()
         data1 = []
@@ -39,18 +40,18 @@ class Department:
         data1 = list(set(data1))
         return 'departments: %s' % data1
     exposed = True
-
+# Дописать фильтр для департементов
 
 
 if __name__ == '__main__':
     cherrypy.tree.mount(
-        Requests(), '/users', {
+        Requests_users(), '/users', {
             '/':
                 {'request.dispatch': cherrypy.dispatch.MethodDispatcher()}
         }
     )
     cherrypy.tree.mount(
-        Department(), '/department', {
+        Requests_department(), '/department', {
             '/':
                 {'request.dispatch': cherrypy.dispatch.MethodDispatcher()}
         }

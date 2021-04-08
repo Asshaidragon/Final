@@ -1,7 +1,11 @@
 import pytest
-from main import ExampleApp
-from calculator import checking_expression
-@pytest.fixture
-def supply_calc():
-    pass
-    return ExampleApp()
+from requests import *
+
+
+@pytest.fixture()
+def requests_users():
+    return Requests_users
+
+# @pytest.fixture()
+# def requests_department():
+#     return requests_department
