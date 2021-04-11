@@ -1,6 +1,4 @@
 import pytest
-from requests import *
-
 
 
 # py.test -v test_users.py
@@ -24,7 +22,6 @@ def test_department_filters(requests_users, department):
         "Filter check by department failed"
 
 
-@pytest.mark.parametrize("", [()])
 def test_users_non_filters(requests_users):
     assert requests_users.GET('') == "data: [{'id': '1', 'username': 'van', 'email': 'van@ya.ru', 'department': 'QA', 'date_joined': '2021.04.01 23:45'}, " \
                                       "{'id': '2', 'username': 'jan', 'email': 'jan@ya.ru', 'department': 'HR', 'date_joined': '2020.02.01 13:45'}, " \
@@ -33,12 +30,16 @@ def test_users_non_filters(requests_users):
         "Filter check by department failed"
 
 
+def test_department_non_filters(requests_department):
+    get = requests_department
+    assert 'HR' in get and 'QA' in get and 'DEV' in get, "Filter check by department failed"
 
 
 
 
 
 
+# @pytest.mark.parametrize("", [()])
 # @pytest.mark.parametrize("expression, answer", [(["1", "+", "2"], 3),
 #                                                 (["2", "-", "1"], 1),
 #                                                 (["10", "/", "2"], 5),
