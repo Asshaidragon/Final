@@ -5,23 +5,21 @@ from Data import *
 class Requests_users:
     def GET(self, username=None, department=None):
         users = all_users()
-        data1 = []
-        data2 = []
+        data1, data2, data3 = [],[],[]
         if username == None:
             for user in users:
                 data1.append(users[user])
         else:
             for user in users:
-                if username in users[user]['username']:
+                if username.lower() in users[user]['username'].lower():
                     data1.append(users[user])
         if department == None:
             for user in users:
                 data2.append(users[user])
         else:
             for user in users:
-                if department == users[user]['department']:
+                if department.lower() == users[user]['department'].lower():
                     data2.append(users[user])
-        data3 = []
         for item in data1:
             if item in data2:
                 data3.append(item)
@@ -30,15 +28,22 @@ class Requests_users:
 
 
 class Requests_department:
-    def GET(self):
+    def GET(self, name=None):
         users = all_users()
         data1 = []
+        data2 = []
         for department in users:
             user = users[department]
             user = user['department']
             data1.append(user)
         data1 = list(set(data1))
-        return 'departments: %s' % data1
+        if name == None:
+            return 'departments: %s' % data1
+        else:
+            for i in data1:
+                if name.lower() in i.lower():
+                    data2.append(i)
+            return 'departments: %s' % data2
     exposed = True
 # Дописать фильтр для департементов
 

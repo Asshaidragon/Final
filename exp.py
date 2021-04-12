@@ -1,3 +1,6 @@
 from requests import *
 
-print(Requests_users.GET('', 'jan', 'HR'))
+requests_users = 'http://127.0.0.1:8080/users/'
+
+
+print(str(requests_users+'?username='+"gf"))
