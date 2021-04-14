@@ -1,4 +1,3 @@
-
 def all_users():
     users = {
             '1': {

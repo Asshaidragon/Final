@@ -1,7 +1,7 @@
 import pytest
 import requests
 
-# py.test -v test_users.py
+# py.test -v test_users.pyr
 # py.test -v -n6 test_users.py
 
 @pytest.mark.parametrize("username, department", [("jan", 'HR')])

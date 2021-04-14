@@ -1,5 +1,6 @@
 import cherrypy
-from Data import *
+from Users.Data import all_users
+
 
 
 class Requests_users:
