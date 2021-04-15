@@ -1,0 +1,6 @@
+FROM python:latest
+
+ADD test_users.py /test/
+ADD conftest.py /test/
+
+WORKDIR /test/

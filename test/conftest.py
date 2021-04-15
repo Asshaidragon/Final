@@ -5,10 +5,10 @@ import requests
 
 @pytest.fixture()
 def requests_users():
-    return 'http://127.0.0.1:8080/users/'
+    return 'http://127.0.0.1:54495/users/'
 
 
 @pytest.fixture()
 def requests_department():
-    return 'http://127.0.0.1:8080/department/'
+    return 'http://127.0.0.1:54495/department/'
 
