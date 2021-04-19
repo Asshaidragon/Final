@@ -1,29 +1,18 @@
-version: "3.7"
+version: '3.8'
 
 services:
   users:
-    image: node:12-alpine
-    command: sh -c "yarn install && yarn run dev"
+    build: ./Users/
+    command: logic.py
     ports:
-      - 3000:3000
+      - 3000:80
     working_dir: /Users
-    volumes:
-      - /Users
-
 
   test:
-    build: test/
-    command: py.test -v -n6 ./test_users.py
+    build: ./test/
+   # image: python:3.7-alpine
+    working_dir: /test
+   # command: sh -c "pip3 install -r requirements.txt --no-cache-dir && pytest"
     network_mode: host
-    depends_on:
-      - users
-
-
-#services:
-#  users:
-#    build: Users/
-#    command: python ./logic.py
-#    ports:
-#      - 1234:1234
 
 

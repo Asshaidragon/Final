@@ -51,7 +51,7 @@ class Requests_department:
 
 
 if __name__ == '__main__':
-    cherrypy.config.update({'server.socket_port': 0000})
+    cherrypy.config.update({'server.socket_host': "0.0.0.0", 'server.socket_port': 80})
     cherrypy.tree.mount(
         Requests_users(), '/users', {
             '/':
