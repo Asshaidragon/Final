@@ -5,5 +5,5 @@ RUN pip3 install -r requirements.txt --no-cache-dir
 COPY . /test
 ADD test_users.py /test
 ADD conftest.py /test
-ENTRYPOINT ["pytest"]
+ENTRYPOINT ["py.test"]
 CMD ["test_users.py"]
