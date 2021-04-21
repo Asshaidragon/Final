@@ -1,4 +1,4 @@
-version: '3.8'
+version: '3.7'
 
 services:
   users:
@@ -12,7 +12,7 @@ services:
     build: ./test/
     working_dir: /test
     command: sh -c "pytest -v -s test_users.py"
-   # entrypoint: sh -c "pytest -v -s test_users.py --disable-warnings"
+   # entrypoint: sh -c "pytest"
    # command: sh -c "pip3 install -r requirements.txt --no-cache-dir && pytest"
     network_mode: host
 
