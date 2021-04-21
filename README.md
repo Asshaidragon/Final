@@ -1,29 +1,24 @@
-# Final
- 
-К экзаменационноему заданию должен быть приложен файл README.md с информацией о том, как запустить сервисы, как провести тест, 
-как собрать образ и тд. Результат выполнения задания следует разместить в репозтитории своего github -  аккаунта. Для проведения теста, сервис 1 должен иметь заполненные данные.
-    1)
-    Необходимо реализовать веб-сервис хранящий список пользователей. Запись списка пользователей должна содержать следующую информацию:
-        - id
-        - username
-        - email 
-        - department (может иметь только одно значение - пользователь принадлежит только к одному департаменту)
-        - date_joined (YYYY-MM-DDThh:mm:ss)
-    Для сервиса реализованы следующие ендпойнты:
-        - /users - возвращает список пользователей
-        доступные фильтры:
-            - username - возвращает пользователя/ей по полному или частичному соответствию поля username
-            - department - возвращает пользователей принадлежащих указанному департаменту 
-        - /department - возвращает список департаментов
-        доступные фильтры:
-            - name - возвращает департамент по полному или частичному соответствию имени департамента
-    2)
-    Необходимо покрыть тестами сервис описанный в пункте 1. 
-        - тестовый фреймворк должен иметь класс клиента для осуществления запросов к тестируемому сервису.
-        - тестовый фреймворк должен использовать pytest
-        - в рамках теста должна быть реализована функциональность fixtures
-        - должно быть реализовано логгирование для file и stdout
-        - тесты должны запускаться параллельно
-    3)
-    Веб-сервис и тестовый фреймворк должны быть упакованы в docker-образ. Образ с тестами должен иметь entrypoint для запуска тестов. 
-В результате выполнения задания должны присутствовать оба Dockerfile. Для совместной работы образа веб-сервиса и образа с тестами должен быть реализован docker-compose файл.
+This is the final project for the autotest courses in python. 
+The meaning of the program is to output from an improvised database a list of users who fit certain filters.
+
+Run docker-compose 
+======
+
+Run it as follows:
+
+```
+$ docker-compose up
+```
+
+You can click on the link to see all the users: 
+http://localhost:3000/users
+
+To sort users by name and department use the following construction:
+http://localhost:3000/users?username=van&department=QA
+If necessary, you can remove one of the filters
+
+To see all available departments use the following link:
+http://localhost:3000/department
+
+To sort by department name, use the following:
+http://localhost:3000/department?name=Q

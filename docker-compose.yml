@@ -11,9 +11,7 @@ services:
   test:
     build: ./test/
     working_dir: /test
-    command: sh -c "pytest -v -s test_users.py"
-   # entrypoint: sh -c "pytest"
-   # command: sh -c "pip3 install -r requirements.txt --no-cache-dir && pytest"
+    command: sh -c "pytest -v -n2 test_users.py"
     network_mode: host
 
 

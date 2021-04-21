@@ -1,3 +1,3 @@
 pytest
 requests
-pytest-forked
+pytest-xdist
