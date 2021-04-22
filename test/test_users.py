@@ -1,5 +1,18 @@
 import pytest
 import requests
+import logging
+
+file_log = logging.FileHandler('Log.log')
+console_out = logging.StreamHandler()
+
+logging.basicConfig(handlers=(file_log, console_out),
+                    format='[%(asctime)s | %(levelname)s]: %(message)s',
+                    datefmt='%m.%d.%Y %H:%M:%S',
+                    level=logging.INFO)
+
+logging.info('Info message??))')
+
+
 
 # py.test -v test_users.py
 # py.test -v -n6 test_users.py
@@ -8,6 +21,7 @@ import requests
 def test_two_filters(requests_users, username, department):
     assert requests.get('%s?username=%s&department=%s' % (requests_users, username, department)).text == "data: [{'id': '2', 'username': 'jan', 'email': 'jan@ya.ru', 'department': 'HR', 'date_joined': '2020.02.01 13:45'}]", \
         "Checking two filters failed"
+        
 
 
 @pytest.mark.parametrize("username", [("jan")])
@@ -39,15 +53,6 @@ def test_department_non_filters(requests_department):
 
 
 
-# @pytest.mark.parametrize("", [()])
-# @pytest.mark.parametrize("expression, answer", [(["1", "+", "2"], 3),
-#                                                 (["2", "-", "1"], 1),
-#                                                 (["10", "/", "2"], 5),
-#                                                 (["3", "*", "5"], 15),
-#                                                 (["0.25", "+", "0.3"], 0.55),
-#                                                 (["10", "+", "-5"], 5)])
-# def test_simple_operations(expression, answer):
-#     assert checking_expression(expression) == answer, "test simple operations failed"
 
 
 
@@ -56,10 +61,5 @@ def test_department_non_filters(requests_department):
 
 
 
-# @pytest.mark.parametrize("a, b, c", [(1, 2, 3), (2, 2, 4)])
-# def test_valid(supply_calc, a, b, c):
-    # try:
-    #     2 / 0
-    # except Exception as e:
-    #     assert False, str(e)
-    # assert supply_calc.calculate(a, b) == ans, "ppc"
+
+
